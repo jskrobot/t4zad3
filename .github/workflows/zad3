@@ -1,20 +1,25 @@
-import unittest
+name: Python application
 
-class TestStringMethods(unittest.TestCase):
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
 
-    def test_upper(self):
-        self.assertEqual('foo'.upper(), 'FOO')
+permissions:
+  contents: read
 
-    def test_isupper(self):
-        self.assertTrue('FOO'.isupper())
-        self.assertFalse('Foo'.isupper())
+jobs:
+  build:
 
-    def test_split(self):
-        s = 'hello world'
-        self.assertEqual(s.split(), ['hello', 'world'])
-        # check that s.split fails when the separator is not a string
-        with self.assertRaises(TypeError):
-            s.split(2)
+    runs-on: ubuntu-latest
 
-if __name__ == '__main__':
-    unittest.main()
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Run python application
+      run: |
+        python src/benchmark.py
