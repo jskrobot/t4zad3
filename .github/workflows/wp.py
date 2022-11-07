@@ -1,4 +1,4 @@
-x = int(input())
+x = 2354
 def wyznaczanie_cyfr():
     j = x % 10
     print(j)
