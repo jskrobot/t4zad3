@@ -13,6 +13,3 @@ if x > 99:
     wyznaczanie_cyfr()
 else:
     print("bledna liczba")
-    
-if __name__ == '__main__':
-    main()
